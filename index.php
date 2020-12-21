@@ -6,8 +6,9 @@ $zk = new ZKLibrary('192.168.0.51', 4370);
 $zk->connect();
 $zk->disableDevice();
 
-$users = $zk->getUser();
-
+// $users = $zk->getUser();
+// $zk->setTime(date('d-m-Y H:i:s'));
+$kehadiran = $zk->getAttendance();
 ?>
 <table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 <thead>
@@ -16,14 +17,14 @@ $users = $zk->getUser();
     <td>UID</td>
     <td>ID</td>
     <td>Name</td>
-    <td>Role</td>
-    <td>Password</td>
+    <td>State</td>
+    <td>Jam</td>
   </tr>
 </thead>
 <tbody>
 <?php
 $no = 0;
-foreach($users as $key => $user)
+foreach($kehadiran as $key => $user)
 {
   $no++;
   ?>
@@ -41,7 +42,7 @@ foreach($users as $key => $user)
 </tbody>
 </table>
 <?php
-
+print_r($kehadiran);
 $zk->enableDevice();
 $zk->disconnect();
 
